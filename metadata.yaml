@@ -1,0 +1,52 @@
+# App Store Connect Metadata for HotDog
+# Use with Fastlane deliver or manual entry in App Store Connect
+
+app:
+  name: "HotDog"
+  subtitle: "Not Hotdog - Food Identifier"
+  primary_category: "Entertainment"
+  secondary_category: "Food & Drink"
+  bundle_id: "com.darrylcauldwell.HotDog"
+
+  description: |
+    Is it a hotdog? Or is it not a hotdog? Find out instantly!
+
+    HotDog uses on-device machine learning to determine whether the item
+    in your photo is a hotdog — or not a hotdog. Inspired by the iconic
+    app from HBO's Silicon Valley, this novelty app brings Jian-Yang's
+    dream to life.
+
+    Features:
+    • Snap a photo or pick from your library
+    • Instant on-device classification — no internet required
+    • Simple, fun results: HOTDOG or NOT HOTDOG
+    • Works on iPhone and iPad
+
+    All processing happens entirely on your device. No images are uploaded,
+    no data is collected, and no network connection is needed.
+
+  keywords: "hotdog,not hotdog,food,identifier,silicon valley,camera,ml,ai,funny,novelty"
+  # keywords must be ≤ 100 characters total
+
+  privacy_url: ""
+  support_url: ""
+
+  age_rating: "4+"
+
+  privacy:
+    data_collection: "none"
+    notes: |
+      This app performs all image classification on-device using Core ML.
+      No images leave the device. No personal data is collected, stored,
+      or transmitted. No analytics or tracking SDKs are included.
+
+  review_notes: |
+    This is a novelty/entertainment app inspired by the "Not Hotdog" app
+    from HBO's Silicon Valley (Season 4). The app uses MobileNetV2 via
+    Core ML to classify photos as either "hotdog" or "not hotdog."
+    To test: take a photo of any food item or object. The app will tell
+    you whether it is a hotdog or not. No login or account is required.
+    All processing is on-device.
+
+  version: "1.0.0"
+  copyright: "2026 Darryl Cauldwell"
