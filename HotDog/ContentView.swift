@@ -18,41 +18,54 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(
-                colors: [Color.yellow.opacity(0.3), Color.red.opacity(0.2)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
+            AppColors.cardBackground
+                .ignoresSafeArea()
 
-            VStack(spacing: 16) {
-                Text("🌭 Hot Dog?")
-                    .font(.system(size: 36, weight: .black, design: .rounded))
-
-                if let image = selectedImage {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        .shadow(radius: 8)
-                        .padding(.horizontal)
-                } else {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.gray.opacity(0.2))
-                        .overlay(
-                            VStack(spacing: 12) {
-                                Image(systemName: "photo.on.rectangle.angled")
-                                    .font(.system(size: 50))
-                                    .foregroundColor(.gray)
-                                Text("Take or choose a photo")
-                                    .foregroundColor(.gray)
-                            }
-                        )
-                        .padding(.horizontal)
+            VStack(spacing: Spacing.lg) {
+                // Header
+                VStack(spacing: Spacing.xs) {
+                    Text("SeeFood")
+                        .font(.largeTitle.bold())
+                        .foregroundStyle(AppColors.primary)
+                    Text("Shazam, But For Food")
+                        .font(.subheadline)
+                        .foregroundStyle(AppColors.neutralGray)
                 }
+                .padding(.top, Spacing.sm)
 
+                // Image area
+                Group {
+                    if let image = selectedImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.xl, style: .continuous))
+                    } else {
+                        RoundedRectangle(cornerRadius: CornerRadius.xl, style: .continuous)
+                            .fill(AppColors.elevatedSurface)
+                            .overlay(
+                                VStack(spacing: Spacing.md) {
+                                    Image(systemName: "fork.knife.circle")
+                                        .font(.system(size: 50))
+                                        .foregroundStyle(AppColors.primary.opacity(0.4))
+                                    Text("Take or choose a photo")
+                                        .font(.subheadline)
+                                        .foregroundStyle(AppColors.neutralGray)
+                                }
+                            )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: CornerRadius.xl, style: .continuous)
+                                    .stroke(AppColors.primary.opacity(0.1), lineWidth: BorderWidth.subtle)
+                            )
+                    }
+                }
+                .standardShadow(Shadow.glass)
+                .padding(.horizontal)
+
+                // Result
                 if classifier.isProcessing {
                     ProgressView("Analyzing...")
+                        .foregroundStyle(AppColors.primary)
                 }
 
                 if let result = classifier.result {
@@ -62,18 +75,16 @@ struct ContentView: View {
 
                 Spacer(minLength: 0)
 
-                HStack(spacing: 16) {
+                // Action buttons
+                HStack(spacing: Spacing.lg) {
                     Button {
                         showCamera = true
                     } label: {
                         Label("Camera", systemImage: "camera.fill")
                             .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.accentColor)
-                            .foregroundColor(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .foregroundStyle(AppColors.primary)
                     }
+                    .buttonStyle(GlassButtonStyle())
                     .disabled(!cameraAvailable)
 
                     Button {
@@ -81,16 +92,13 @@ struct ContentView: View {
                     } label: {
                         Label("Photos", systemImage: "photo.fill")
                             .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.accentColor)
-                            .foregroundColor(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .foregroundStyle(AppColors.primary)
                     }
+                    .buttonStyle(GlassButtonStyle())
                 }
                 .padding(.horizontal)
+                .padding(.bottom, Spacing.sm)
             }
-            .padding(.vertical)
         }
         .sheet(isPresented: $showCamera) {
             ImagePicker(image: $selectedImage, sourceType: .camera)

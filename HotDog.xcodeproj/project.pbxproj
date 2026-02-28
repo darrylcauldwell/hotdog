@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0158440DB08923C70846E4C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B555FE787AE077F1769900E /* Assets.xcassets */; };
+		A1A1A1A1A1A1A1A1A1A1A1A1 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A2A2A2A2A2A2A2A2A2A2A2 /* AppColors.swift */; };
+		B1B1B1B1B1B1B1B1B1B1B1B1 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B2B2B2B2B2B2B2B2B2B2B2 /* DesignTokens.swift */; };
+		C1C1C1C1C1C1C1C1C1C1C1C1 /* GlassDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2C2C2C2C2C2C2C2C2C2C2 /* GlassDesignSystem.swift */; };
 		12E09388AD617C71FE59F576 /* HotDogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F538FC7FEDDA04B58EFDE74 /* HotDogApp.swift */; };
 		1BC5796E1F4612EAA526B05D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9324507E6E69D06E9BE658 /* ImagePicker.swift */; };
 		385E7508EE2A4B40B16DE57B /* ImageClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B3B1CC0813DD7EB622E00F /* ImageClassifier.swift */; };
@@ -19,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A2A2A2A2A2A2A2A2A2A2A2A2 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		B2B2B2B2B2B2B2B2B2B2B2B2 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
+		C2C2C2C2C2C2C2C2C2C2C2C2 /* GlassDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassDesignSystem.swift; sourceTree = "<group>"; };
 		2A62F2008585DF86D95E1641 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		3F538FC7FEDDA04B58EFDE74 /* HotDogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotDogApp.swift; sourceTree = "<group>"; };
 		85B3B1CC0813DD7EB622E00F /* ImageClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassifier.swift; sourceTree = "<group>"; };
@@ -48,8 +54,11 @@
 		4A923E5869A471259EFAA373 /* HotDog */ = {
 			isa = PBXGroup;
 			children = (
+				A2A2A2A2A2A2A2A2A2A2A2A2 /* AppColors.swift */,
 				8B555FE787AE077F1769900E /* Assets.xcassets */,
 				FDCA1E6A0B16E105BF0D79EA /* ContentView.swift */,
+				B2B2B2B2B2B2B2B2B2B2B2B2 /* DesignTokens.swift */,
+				C2C2C2C2C2C2C2C2C2C2C2C2 /* GlassDesignSystem.swift */,
 				3F538FC7FEDDA04B58EFDE74 /* HotDogApp.swift */,
 				85B3B1CC0813DD7EB622E00F /* ImageClassifier.swift */,
 				CB9324507E6E69D06E9BE658 /* ImagePicker.swift */,
@@ -152,7 +161,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1A1A1A1A1A1A1A1A1A1A1A1 /* AppColors.swift in Sources */,
 				69F2F266C5FAA2C19F6DCC8D /* ContentView.swift in Sources */,
+				B1B1B1B1B1B1B1B1B1B1B1B1 /* DesignTokens.swift in Sources */,
+				C1C1C1C1C1C1C1C1C1C1C1C1 /* GlassDesignSystem.swift in Sources */,
 				12E09388AD617C71FE59F576 /* HotDogApp.swift in Sources */,
 				385E7508EE2A4B40B16DE57B /* ImageClassifier.swift in Sources */,
 				1BC5796E1F4612EAA526B05D /* ImagePicker.swift in Sources */,
