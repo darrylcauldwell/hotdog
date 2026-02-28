@@ -7,7 +7,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 OUTPUT_DIR="$SCRIPT_DIR/screenshots"
 BUILD_DIR="$SCRIPT_DIR/.build/screenshots"
-APP_BUNDLE_ID="com.darrylcauldwell.HotDog"
+APP_BUNDLE_ID="dev.dreamfold.HotDog"
 
 RUNTIME="com.apple.CoreSimulator.SimRuntime.iOS-26-2"
 

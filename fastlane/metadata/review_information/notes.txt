@@ -1,0 +1,1 @@
+This is a novelty/entertainment app inspired by the "Not Hotdog" app from HBO's Silicon Valley (Season 4). The app uses MobileNetV2 via Core ML to classify photos as either "hotdog" or "not hotdog." To test: take a photo of any food item or object. The app will tell you whether it is a hotdog or not. No login or account is required. All processing is on-device.

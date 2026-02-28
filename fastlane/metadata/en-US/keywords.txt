@@ -1,0 +1,1 @@
+hotdog,not hotdog,food,identifier,silicon valley,camera,ml,ai,funny,novelty

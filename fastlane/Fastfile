@@ -1,0 +1,66 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Create app in App Store Connect"
+  lane :create_app do
+    api_key = app_store_connect_api_key(
+      key_id: "2QUU3J6S3D",
+      issuer_id: "39bba98a-c143-49fe-ab48-839ff38b4edd",
+      key_filepath: File.expand_path("~/.private_keys/AuthKey_2QUU3J6S3D.p8")
+    )
+    produce(
+      app_identifier: "dev.dreamfold.HotDog",
+      app_name: "Aviato SeeFood",
+      language: "English",
+      app_version: "1.0",
+      sku: "hotdog-2026",
+      team_id: "N6BK2WX94Z"
+    )
+  end
+
+  desc "Push App Store metadata to App Store Connect"
+  lane :metadata do
+    deliver(
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      force: true,
+      metadata_path: "./fastlane/metadata",
+      app_version: "1.0",
+      submit_for_review: false,
+      automatic_release: false,
+      precheck_include_in_app_purchases: false,
+      run_precheck_before_submit: false
+    )
+  end
+
+  desc "Build and archive iOS app"
+  lane :build do
+    gym(
+      scheme: "HotDog",
+      project: "HotDog.xcodeproj",
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "HotDog",
+      clean: true,
+      include_bitcode: false,
+      xcargs: "-allowProvisioningUpdates"
+    )
+  end
+
+  desc "Upload iOS build to App Store Connect"
+  lane :upload_build do
+    pilot(
+      api_key_path: "./fastlane/api_key.json",
+      skip_waiting_for_build_processing: true,
+      ipa: "./build/HotDog.ipa",
+      app_identifier: "dev.dreamfold.HotDog"
+    )
+  end
+
+  desc "Build, upload, and push metadata"
+  lane :release do
+    build
+    upload_build
+    metadata
+  end
+end

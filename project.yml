@@ -1,6 +1,6 @@
 name: HotDog
 options:
-  bundleIdPrefix: com.darrylcauldwell
+  bundleIdPrefix: dev.dreamfold
   deploymentTarget:
     iOS: "16.0"
   generateEmptyDirectories: true
@@ -15,7 +15,7 @@ targets:
       base:
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_FILE: HotDog/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: com.darrylcauldwell.HotDog
+        PRODUCT_BUNDLE_IDENTIFIER: dev.dreamfold.HotDog
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
         SWIFT_VERSION: "5.0"

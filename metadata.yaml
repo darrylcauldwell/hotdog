@@ -6,7 +6,7 @@ app:
   subtitle: "Not Hotdog - Food Identifier"
   primary_category: "Entertainment"
   secondary_category: "Food & Drink"
-  bundle_id: "com.darrylcauldwell.HotDog"
+  bundle_id: "dev.dreamfold.HotDog"
 
   description: |
     Is it a hotdog? Or is it not a hotdog? Find out instantly!

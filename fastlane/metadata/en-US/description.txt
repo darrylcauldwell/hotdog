@@ -1,0 +1,11 @@
+Is it a hotdog? Or is it not a hotdog? Find out instantly!
+
+HotDog uses on-device machine learning to determine whether the item in your photo is a hotdog — or not a hotdog. Inspired by the iconic app from HBO's Silicon Valley, this novelty app brings Jian-Yang's dream to life.
+
+Features:
+• Snap a photo or pick from your library
+• Instant on-device classification — no internet required
+• Simple, fun results: HOTDOG or NOT HOTDOG
+• Works on iPhone and iPad
+
+All processing happens entirely on your device. No images are uploaded, no data is collected, and no network connection is needed.
