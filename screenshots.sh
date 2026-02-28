@@ -1,27 +1,26 @@
 #!/bin/bash
 set -euo pipefail
 
-# Screenshot automation for HotDog app
+# Screenshot automation for SeeFood app
 # Captures empty, hotdog, and not-hotdog states on iPhone and iPad simulators
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 OUTPUT_DIR="$SCRIPT_DIR/screenshots"
-BUILD_DIR="$SCRIPT_DIR/.build/screenshots"
+BUILD_DIR="/tmp/hotdog-screenshots-build"
 APP_BUNDLE_ID="dev.dreamfold.HotDog"
 
 RUNTIME="com.apple.CoreSimulator.SimRuntime.iOS-26-2"
 
-declare -A DEVICES
-DEVICES["iPhone_17_Pro_Max"]="com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max"
-DEVICES["iPad_Pro_13_inch_M5"]="com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-12GB"
+DEVICE_NAMES=("iPhone_17_Pro_Max" "iPad_Pro_13_inch_M5")
+DEVICE_TYPES=("com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max" "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-12GB")
 
 STATES=("demo-empty" "demo-hotdog" "demo-nothotdog")
 
 cleanup() {
     echo "Cleaning up simulators..."
-    for name in "${!DEVICES[@]}"; do
+    for name in "${DEVICE_NAMES[@]}"; do
         local udid
-        udid=$(xcrun simctl list devices | grep "HotDog-$name" | grep -oE '[0-9A-F-]{36}' | head -1 || true)
+        udid=$(xcrun simctl list devices | grep "SeeFood-$name" | grep -oE '[0-9A-F-]{36}' | head -1 || true)
         if [ -n "$udid" ]; then
             xcrun simctl shutdown "$udid" 2>/dev/null || true
             xcrun simctl delete "$udid" 2>/dev/null || true
@@ -31,24 +30,25 @@ cleanup() {
 
 trap cleanup EXIT
 
-echo "==> Building HotDog for simulator..."
+echo "==> Building SeeFood for simulator..."
 xcodebuild build \
-    -project "$SCRIPT_DIR/HotDog.xcodeproj" \
-    -scheme HotDog \
+    -project "$SCRIPT_DIR/SeeFood.xcodeproj" \
+    -scheme SeeFood \
     -destination "generic/platform=iOS Simulator" \
     -derivedDataPath "$BUILD_DIR" \
     -quiet
 
-APP_PATH=$(find "$BUILD_DIR" -name "HotDog.app" -path "*/Debug-iphonesimulator/*" | head -1)
+APP_PATH=$(find "$BUILD_DIR" -name "SeeFood.app" -path "*/Debug-iphonesimulator/*" | head -1)
 if [ -z "$APP_PATH" ]; then
-    echo "ERROR: Could not find built HotDog.app"
+    echo "ERROR: Could not find built SeeFood.app"
     exit 1
 fi
 echo "    App: $APP_PATH"
 
-for DEVICE_NAME in "${!DEVICES[@]}"; do
-    DEVICE_TYPE="${DEVICES[$DEVICE_NAME]}"
-    SIM_NAME="HotDog-$DEVICE_NAME"
+for i in "${!DEVICE_NAMES[@]}"; do
+    DEVICE_NAME="${DEVICE_NAMES[$i]}"
+    DEVICE_TYPE="${DEVICE_TYPES[$i]}"
+    SIM_NAME="SeeFood-$DEVICE_NAME"
 
     echo ""
     echo "==> Setting up $DEVICE_NAME..."
@@ -84,6 +84,12 @@ for DEVICE_NAME in "${!DEVICES[@]}"; do
     # Install app
     xcrun simctl install "$UDID" "$APP_PATH"
     echo "    Installed app"
+
+    # Warmup launch to dismiss system notifications (e.g. Apple Intelligence)
+    xcrun simctl launch "$UDID" "$APP_BUNDLE_ID" "-demo-empty"
+    sleep 5
+    xcrun simctl terminate "$UDID" "$APP_BUNDLE_ID" 2>/dev/null || true
+    sleep 1
 
     # Create output directory
     DEVICE_OUTPUT="$OUTPUT_DIR/$DEVICE_NAME"

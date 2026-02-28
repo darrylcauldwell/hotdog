@@ -16,7 +16,7 @@ enum DemoMode {
 }
 
 @main
-struct HotDogApp: App {
+struct SeeFoodApp: App {
     private let demoMode = DemoMode.fromLaunchArguments()
 
     var body: some Scene {

@@ -1,31 +1,23 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Create app in App Store Connect"
-  lane :create_app do
-    api_key = app_store_connect_api_key(
+  before_all do
+    app_store_connect_api_key(
       key_id: "2QUU3J6S3D",
       issuer_id: "39bba98a-c143-49fe-ab48-839ff38b4edd",
       key_filepath: File.expand_path("~/.private_keys/AuthKey_2QUU3J6S3D.p8")
     )
-    produce(
-      app_identifier: "dev.dreamfold.HotDog",
-      app_name: "Aviato SeeFood",
-      language: "English",
-      app_version: "1.0",
-      sku: "hotdog-2026",
-      team_id: "N6BK2WX94Z"
-    )
   end
 
-  desc "Push App Store metadata to App Store Connect"
+  desc "Upload metadata and screenshots to App Store Connect"
   lane :metadata do
     deliver(
       skip_binary_upload: true,
-      skip_screenshots: true,
+      skip_screenshots: false,
+      overwrite_screenshots: true,
       force: true,
       metadata_path: "./fastlane/metadata",
-      app_version: "1.0",
+      screenshots_path: "./fastlane/screenshots",
       submit_for_review: false,
       automatic_release: false,
       precheck_include_in_app_purchases: false,
@@ -33,34 +25,31 @@ platform :ios do
     )
   end
 
-  desc "Build and archive iOS app"
+  desc "Build and archive for App Store"
   lane :build do
     gym(
-      scheme: "HotDog",
-      project: "HotDog.xcodeproj",
+      scheme: "SeeFood",
+      project: "SeeFood.xcodeproj",
       export_method: "app-store",
       output_directory: "./build",
-      output_name: "HotDog",
+      output_name: "SeeFood",
       clean: true,
-      include_bitcode: false,
       xcargs: "-allowProvisioningUpdates"
     )
   end
 
-  desc "Upload iOS build to App Store Connect"
-  lane :upload_build do
+  desc "Upload build to TestFlight"
+  lane :upload do
     pilot(
-      api_key_path: "./fastlane/api_key.json",
       skip_waiting_for_build_processing: true,
-      ipa: "./build/HotDog.ipa",
-      app_identifier: "dev.dreamfold.HotDog"
+      ipa: "./build/SeeFood.ipa"
     )
   end
 
   desc "Build, upload, and push metadata"
   lane :release do
     build
-    upload_build
+    upload
     metadata
   end
 end

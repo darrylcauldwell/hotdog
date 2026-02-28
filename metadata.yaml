@@ -1,35 +1,37 @@
-# App Store Connect Metadata for HotDog
+# App Store Connect Metadata for Aviato SeeFood
 # Use with Fastlane deliver or manual entry in App Store Connect
 
 app:
-  name: "HotDog"
-  subtitle: "Not Hotdog - Food Identifier"
+  name: "SeeFood by Aviato"
+  subtitle: "Shazam, But For Food"
   primary_category: "Entertainment"
   secondary_category: "Food & Drink"
   bundle_id: "dev.dreamfold.HotDog"
 
   description: |
-    Is it a hotdog? Or is it not a hotdog? Find out instantly!
+    It's like Shazam, but for food!
 
-    HotDog uses on-device machine learning to determine whether the item
-    in your photo is a hotdog — or not a hotdog. Inspired by the iconic
-    app from HBO's Silicon Valley, this novelty app brings Jian-Yang's
-    dream to life.
+    Aviato SeeFood uses on-device machine learning to answer the only
+    question that truly matters: is it a hotdog, or is it not a hotdog?
+
+    Inspired by the iconic SeeFood concept, this is the food-identification
+    technology the world has been waiting for.
 
     Features:
     • Snap a photo or pick from your library
     • Instant on-device classification — no internet required
-    • Simple, fun results: HOTDOG or NOT HOTDOG
+    • Simple, definitive results: HOTDOG or NOT HOTDOG
     • Works on iPhone and iPad
+    • Dreamfold Liquid Glass design
 
     All processing happens entirely on your device. No images are uploaded,
     no data is collected, and no network connection is needed.
 
-  keywords: "hotdog,not hotdog,food,identifier,silicon valley,camera,ml,ai,funny,novelty"
+  keywords: "seefood,hotdog,not hotdog,food identifier,camera,ml,ai,classifier,food scan"
   # keywords must be ≤ 100 characters total
 
   privacy_url: ""
-  support_url: ""
+  support_url: "https://github.com/darrylcauldwell/SeeFood"
 
   age_rating: "4+"
 
@@ -41,12 +43,11 @@ app:
       or transmitted. No analytics or tracking SDKs are included.
 
   review_notes: |
-    This is a novelty/entertainment app inspired by the "Not Hotdog" app
-    from HBO's Silicon Valley (Season 4). The app uses MobileNetV2 via
+    This is a novelty/entertainment app inspired by the "Not Hotdog"
+    concept from a popular TV comedy. The app uses MobileNetV2 via
     Core ML to classify photos as either "hotdog" or "not hotdog."
-    To test: take a photo of any food item or object. The app will tell
-    you whether it is a hotdog or not. No login or account is required.
-    All processing is on-device.
+    To test: take a photo of any food item or object. No login or
+    account is required. All processing is on-device.
 
   version: "1.0.0"
   copyright: "2026 Darryl Cauldwell"
